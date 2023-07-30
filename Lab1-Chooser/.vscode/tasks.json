@@ -1,0 +1,80 @@
+{
+    // https://code.visualstudio.com/docs/editor/tasks
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Verilator Template: Generate C/C++ Code",
+            "type": "shell",
+            "command": "verilator",
+            "args": [
+                "'-Wno-fatal'",
+                "'Top.v'",
+                "'main.cpp'",
+                "'--top-module'",
+                "'Top'",
+                "'--cc'",
+                "'--trace'",
+                "'--exe'",
+            ],
+            "group": {
+                // Alternative: build/test/none
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Compile C/C++ Code",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "'-C'",
+                "'obj_dir'",
+                "'-f'",
+                "'VTop.mk'",
+                "'VTop'",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Run Simulation",
+            "type": "shell",
+            "command": "${workspaceFolder}/obj_dir/VTop",
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Show Wave",
+            "type": "shell",
+            "command": "gtkwave",
+            "args":["'${workspaceFolder}/wave.vcd'"],
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Clean",
+            "type": "shell",
+            "command": "rm",
+            "args":[
+                "-rf",
+                "'${workspaceFolder}/wave.vcd'",
+                "'${workspaceFolder}/obj_dir'",
+            ],
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+    ]
+}
