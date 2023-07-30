@@ -9,7 +9,7 @@ VERILATOR_CFLAGS += -MMD --build -cc  \
 BUILD_DIR = ./verilator_build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
-NVBOARD_HOME = $(shell pwd)/../nvboard
+NVBOARD_HOME = $(shell pwd)/../../nvboard
 
 default: $(BIN)
 
