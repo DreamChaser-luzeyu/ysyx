@@ -8,7 +8,7 @@ include_directories(${PROJECT_SOURCE_DIR}/verilator_build/obj_dir)
 include_directories(${PROJECT_SOURCE_DIR}/../nvboard/include)
 include_directories(/usr/share/verilator/include)
 
-aux_source_directory(${PROJECT_SOURCE_DIR}/../nvboard/src NVBOARD_SRCS)
+aux_source_directory(${PROJECT_SOURCE_DIR}/../../nvboard/src NVBOARD_SRCS)
 message(${NVBOARD_SRCS})
 set(
         SOURCE_FILES

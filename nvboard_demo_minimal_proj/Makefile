@@ -47,7 +47,16 @@ $(BIN)_debug: $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
 	$(VERILATOR) $(VERILATOR_CFLAGS) \
 		--top-module $(TOPNAME) $^ \
 		$(addprefix -CFLAGS , $(CFLAGS) -DCLK_DEBUG_MODE) $(addprefix -LDFLAGS , $(LDFLAGS)) \
+		--trace \
 		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN)_debug)
+
+$(BIN)_debug_dump: $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
+	@rm -rf $(OBJ_DIR)
+	$(VERILATOR) $(VERILATOR_CFLAGS) \
+		--top-module $(TOPNAME) $^ \
+		$(addprefix -CFLAGS , $(CFLAGS) -DCLK_DEBUG_MODE -DDUMP_WAVE) $(addprefix -LDFLAGS , $(LDFLAGS)) \
+		--trace \
+		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN)_debug_dump)
 
 all: default
 
@@ -67,7 +76,14 @@ run_debug: $(BIN)_debug
 run_debug_external_terminal: $(BIN)_debug
 	@ NVBOARD_HOME=$(NVBOARD_HOME) konsole -e $(abspath $(BIN)_debug)
 
+run_debug_dump_external_terminal: $(BIN)_debug_dump
+	@ NVBOARD_HOME=$(NVBOARD_HOME) konsole -e $(abspath $(BIN)_debug_dump)
+
+show_wave:
+	gtkwave wave.vcd
+
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -rf wave.vcd
 
 .PHONY: default all clean run
