@@ -1,0 +1,64 @@
+{
+    // https://code.visualstudio.com/docs/editor/tasks
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "NVBOARD_HOME": "${workspaceFolder}/../nvboard/"
+        }
+    },
+    "tasks": [
+        {
+            "label": "Verilator Template: Generate & Compile C/C++ Code",
+            "type": "shell",
+            "command": "make",
+            "args": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Run Simulation",
+            "type": "shell",
+            "command": "make run",
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Run Simulation CLK Debug",
+            "type": "shell",
+            "command": "make run_debug",
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Show Wave",
+            "type": "shell",
+            "command": "gtkwave",
+            "args":["'${workspaceFolder}/wave.vcd'"],
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+        {
+            "label": "Verilator Template: Clean",
+            "type": "shell",
+            "command": "make clean",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+        }, 
+    ]
+}
