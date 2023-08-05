@@ -1,0 +1,3 @@
+[submodule "nemu"]
+	path = nemu
+	url = https://github.com/DreamChaser-luzeyu/nemu.git
