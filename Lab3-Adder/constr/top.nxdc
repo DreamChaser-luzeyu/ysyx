@@ -1,0 +1,5 @@
+top=top
+
+I_NUM (SW7, SW6, SW5, SW4)
+O_BIN (LD15, LD14)
+
